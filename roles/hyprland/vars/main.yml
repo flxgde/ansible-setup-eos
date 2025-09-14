@@ -1,0 +1,5 @@
+
+aur_packages:
+  - hyprland
+  - waybar
+  - ghostty

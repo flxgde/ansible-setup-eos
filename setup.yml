@@ -1,0 +1,6 @@
+
+- name: Setup my eos system
+  hosts: all
+  roles:
+    - base
+    - hyprland

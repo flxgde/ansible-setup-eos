@@ -1,0 +1,12 @@
+
+- name: Ensure yay is present
+  command: which yay
+  register: yay_check
+  failed_when: yay_check.rc != 0
+
+- name: Install AUR packages
+  become: false
+  loop: "{{ aur_packages }}"
+  command: yay -S --noconfirm {{ item }}
+  args:
+    creates: "/usr/bin/{{ item | regex_replace('-.*','') }}"
