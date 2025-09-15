@@ -2,4 +2,5 @@
 aur_packages:
   - hyprland
   - waybar
-  - ghostty
+  - wofi
+  - xdg-utils

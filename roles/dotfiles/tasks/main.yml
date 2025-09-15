@@ -1,0 +1,61 @@
+---
+# Clone dotfiles repository over HTTPS (no SSH key needed for public repo)
+- name: Clone dotfiles repo
+  git:
+    repo: "https://github.com/flxgde/dotfiles.git"
+    dest: "{{ ansible_env.HOME }}/dotfiles"
+    version: main
+    update: yes
+  become: false
+  tags:
+    - dotfiles
+    - zsh
+    - hyprland
+    - nvim
+    - ghostty
+    - tmux
+    - waybar
+    - wofi
+
+- name: Symlink zsh config
+  import_tasks: zsh.yml
+  tags:
+    - zsh
+    - dotfiles
+
+#- name: Symlink hyprland config
+#  import_tasks: hypr.yml
+#  tags:
+#    - hyprland
+#    - dotfiles
+#
+#- name: Symlink neovim config
+#  import_tasks: nvim.yml
+#  tags:
+#    - nvim
+#    - dotfiles
+#
+#- name: Symlink ghostty config
+#  import_tasks: ghostty.yml
+#  tags:
+#    - ghostty
+#    - dotfiles
+#
+#- name: Symlink tmux config
+#  import_tasks: tmux.yml
+#  tags:
+#    - tmux
+#    - dotfiles
+#
+#- name: Symlink waybar config
+#  import_tasks: waybar.yml
+#  tags:
+#    - waybar
+#    - dotfiles
+#
+#- name: Symlink wofi config
+#  import_tasks: wofi.yml
+#  tags:
+#    - wofi
+#    - dotfiles
+#

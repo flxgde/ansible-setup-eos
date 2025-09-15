@@ -1,12 +1,25 @@
+---
+- name: Install Hyprland and essential packages
+  pacman:
+    name:
+      - hyprland
+      - waybar
+      - wofi
+      - xdg-utils
+      - sddm
+      - polkit-gnome
+    state: present
+    update_cache: yes
+  become: true
 
-- name: Ensure yay is present
-  command: which yay
-  register: yay_check
-  failed_when: yay_check.rc != 0
+- name: Enable SDDM service
+  systemd:
+    name: sddm
+    enabled: yes
+    state: started
+  become: true
 
-- name: Install AUR packages
-  become: false
-  loop: "{{ aur_packages }}"
-  command: yay -S --noconfirm {{ item }}
-  args:
-    creates: "/usr/bin/{{ item | regex_replace('-.*','') }}"
+- name: Set systemd default to graphical.target
+  command: systemctl set-default graphical.target
+  become: true
+

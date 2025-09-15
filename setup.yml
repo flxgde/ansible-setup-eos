@@ -3,17 +3,16 @@
   hosts: all
   roles:
     - role: base
-      tags: 
-      - base
+      tags: [base]
 
     - role: zsh
-      tags:
-      - zsh
+      tags: [zsh]
 
     - role: yay
-      tags: 
-      - yay
+      tags: [yay]
 
     - role: hyprland
-      tags: 
-      - hyprland
+      tags: [hyprland]
+
+    - role: dotfiles
+      tags: [dotfiles]

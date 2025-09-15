@@ -24,6 +24,12 @@
     update: yes
   loop: "{{ zsh_plugins }}"
 
+- name: Install Zoxide
+  become: true
+  pacman:
+    name: zoxide
+    state: present
+
 - name: Change default shell to zsh
   become: true
   user:
