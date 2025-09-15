@@ -1,0 +1,32 @@
+- name: Ensure Zsh is installed
+  become: true
+  pacman:
+    name: zsh
+    state: present
+
+- name: Check if Oh My Zsh is installed
+  stat:
+    path: "{{ ansible_env.HOME }}/.oh-my-zsh"
+  register: ohmyzsh_check
+
+- name: Install Oh My Zsh
+  become: false
+  shell: |
+    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
+  args:
+    creates: "{{ ansible_env.HOME }}/.oh-my-zsh"
+  when: not ohmyzsh_check.stat.exists
+
+- name: Install Zsh plugins
+  git:
+    repo: "{{ item.repo }}"
+    dest: "{{ ansible_env.HOME }}/.oh-my-zsh/custom/plugins/{{ item.name }}"
+    update: yes
+  loop: "{{ zsh_plugins }}"
+
+- name: Change default shell to zsh
+  become: true
+  user:
+    name: "{{ ansible_user }}"
+    shell: /usr/bin/zsh
+

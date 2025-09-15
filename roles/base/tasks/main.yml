@@ -6,7 +6,6 @@
   pacman:
     name:
       - git
-      - neovim
       - htop
       - zsh
       - base-devel

@@ -2,5 +2,18 @@
 - name: Setup my eos system
   hosts: all
   roles:
-    - base
-    - hyprland
+    - role: base
+      tags: 
+      - base
+
+    - role: zsh
+      tags:
+      - zsh
+
+    - role: yay
+      tags: 
+      - yay
+
+    - role: hyprland
+      tags: 
+      - hyprland
