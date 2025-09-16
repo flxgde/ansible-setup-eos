@@ -1,0 +1,7 @@
+---
+- name: Link neovim config
+  ansible.builtin.file:
+    src: "{{ ansible_env.HOME }}/.dotfiles/nvim"
+    dest: "{{ ansible_env.HOME }}/.config/nvim"
+    state: link
+    force: yes

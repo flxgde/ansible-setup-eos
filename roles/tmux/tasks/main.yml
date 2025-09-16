@@ -1,0 +1,20 @@
+---
+- name: Install tmux
+  become: true
+  community.general.pacman:
+    name: tmux
+    state: present
+
+- name: Remove existing tmux config folder
+  ansible.builtin.file:
+    path: "{{ ansible_env.HOME }}/.config/tmux"
+    state: absent
+  become: false
+
+- name: Symlink tmux
+  become: false
+  ansible.builtin.file:
+    src: "{{ ansible_env.HOME }}/.dotfiles/.config/tmux"
+    dest: "{{ ansible_env.HOME }}/.config/tmux"
+    state: link
+    force: yes
