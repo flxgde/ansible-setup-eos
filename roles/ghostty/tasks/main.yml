@@ -1,0 +1,8 @@
+---
+- name: Install Ghostty
+  become: true
+  pacman:
+    name: ghostty
+    state: present
+    update_cache: yes
+

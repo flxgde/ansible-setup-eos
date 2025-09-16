@@ -23,11 +23,11 @@
     - zsh
     - dotfiles
 
-#- name: Symlink hyprland config
-#  import_tasks: hypr.yml
-#  tags:
-#    - hyprland
-#    - dotfiles
+- name: Symlink hyprland config
+  import_tasks: hyprland.yml
+  tags:
+    - hyprland
+    - dotfiles
 #
 #- name: Symlink neovim config
 #  import_tasks: nvim.yml
@@ -35,12 +35,13 @@
 #    - nvim
 #    - dotfiles
 #
-#- name: Symlink ghostty config
-#  import_tasks: ghostty.yml
-#  tags:
-#    - ghostty
-#    - dotfiles
-#
+
+- name: Symlink ghostty config
+  import_tasks: ghostty.yml
+  tags:
+    - ghostty
+    - dotfiles
+
 #- name: Symlink tmux config
 #  import_tasks: tmux.yml
 #  tags:

@@ -6,15 +6,22 @@
       - waybar
       - wofi
       - xdg-utils
-      - sddm
+      - ly
       - polkit-gnome
     state: present
     update_cache: yes
   become: true
 
-- name: Enable SDDM service
+- name: Disable SDDM service if enabled
   systemd:
     name: sddm
+    enabled: no
+    state: stopped
+  become: true
+
+- name: Enable ly service
+  systemd:
+    name: ly
     enabled: yes
     state: started
   become: true

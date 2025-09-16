@@ -1,3 +1,4 @@
+---
 - name: Symlink .zshrc
   file:
     src: "{{ ansible_env.HOME }}/dotfiles/.zshrc"

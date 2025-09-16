@@ -1,13 +1,18 @@
+---
 - name: Update pacman cache
+  become: true
   pacman:
     update_cache: yes
 
 - name: Install base packages
+  become: true
   pacman:
     name:
       - git
       - htop
       - zsh
       - base-devel
+      - yay
+      - ttf-0xproto-nerd
     state: installed
 
