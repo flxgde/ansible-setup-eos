@@ -1,13 +1,13 @@
 ---
 - name: Remove existing Hyprland config folder
   become: false
-  file:
+  ansible.builtin.file:
     path: "{{ ansible_env.HOME }}/.config/hypr"
     state: absent
 
 - name: Symlink hyprland
   become: false
-  file:
+  ansible.builtin.file:
     src: "{{ ansible_env.HOME }}/dotfiles/.config/hypr"
     dest: "{{ ansible_env.HOME }}/.config/hypr"
     state: link
@@ -15,13 +15,13 @@
 
 - name: Remove existing Waybar config folder
   become: false
-  file:
+  ansible.builtin.file:
     path: "{{ ansible_env.HOME }}/.config/waybar"
     state: absent
 
 - name: Symlink waybar
   become: false
-  file:
+  ansible.builtin.file:
     src: "{{ ansible_env.HOME }}/dotfiles/.config/waybar"
     dest: "{{ ansible_env.HOME }}/.config/waybar"
     state: link

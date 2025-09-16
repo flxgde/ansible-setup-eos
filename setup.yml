@@ -1,4 +1,5 @@
 
+---
 - name: Setup my eos system
   hosts: all
   roles:
@@ -14,5 +15,14 @@
     - role: hyprland
       tags: [hyprland]
 
+    - role: neovim
+      tags: [nvim]
+
     - role: dotfiles
       tags: [dotfiles]
+
+    - role: docker
+      tags: [docker]
+
+    - role: tmux
+      tags: [tmux]

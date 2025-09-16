@@ -1,12 +1,12 @@
 ---
 - name: Update pacman cache
   become: true
-  pacman:
+  community.general.pacman:
     update_cache: yes
 
 - name: Install base packages
   become: true
-  pacman:
+  community.general.pacman:
     name:
       - git
       - htop
@@ -14,5 +14,10 @@
       - base-devel
       - yay
       - ttf-0xproto-nerd
+      - ripgrep
+      - fd
+      - fzf
+      - bat
+      - exa
     state: installed
 

@@ -1,6 +1,6 @@
 ---
 - name: Install Hyprland and essential packages
-  pacman:
+  community.general.pacman:
     name:
       - hyprland
       - waybar
@@ -13,20 +13,20 @@
   become: true
 
 - name: Disable SDDM service if enabled
-  systemd:
+  ansible.builtin.systemd:
     name: sddm
     enabled: no
     state: stopped
   become: true
 
 - name: Enable ly service
-  systemd:
+  ansible.builtin.systemd:
     name: ly
     enabled: yes
     state: started
   become: true
 
 - name: Set systemd default to graphical.target
-  command: systemctl set-default graphical.target
+  ansible.builtin.command: systemctl set-default graphical.target
   become: true
 

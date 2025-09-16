@@ -1,7 +1,7 @@
 ---
 - name: Install Ghostty
   become: true
-  pacman:
+  community.general.pacman:
     name: ghostty
     state: present
     update_cache: yes

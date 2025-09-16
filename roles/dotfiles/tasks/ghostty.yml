@@ -1,13 +1,13 @@
 ---
 - name: Remove existing Ghostty config folder
-  file:
+  ansible.builtin.file:
     path: "{{ ansible_env.HOME }}/.config/ghostty"
     state: absent
   become: false
 
 - name: Symlink ghostty
   become: false
-  file:
+  ansible.builtin.file:
     src: "{{ ansible_env.HOME }}/dotfiles/.config/ghostty"
     dest: "{{ ansible_env.HOME }}/.config/ghostty"
     state: link
