@@ -1,4 +1,22 @@
 ---
+- name: Ensure Zsh is installed (Arch Linux)
+  become: true
+  community.general.pacman:
+    name: zsh
+    state: present
+  when: ansible_facts['os_family'] == "Archlinux"
+
+- name: Ensure Zsh is installed (macOS)
+  community.general.homebrew:
+    name: zsh
+    state: present
+  when: ansible_facts['os_family'] == "Darwin"
+
+- name: Check if Oh My Zsh is installed
+  ansible.builtin.stat:
+    path: "{{ ansible_env.HOME }}/.oh-my-zsh"
+  register: ohmyzsh_check
+
 - name: Install Oh My Zsh
   become: false
   ansible.builtin.shell: |
@@ -14,15 +32,30 @@
     update: yes
   loop: "{{ zsh_plugins }}"
 
-- name: Install Zoxide
+- name: Install Zoxide (Arch Linux)
   become: true
   community.general.pacman:
     name: zoxide
     state: present
+  when: ansible_facts['os_family'] == "Archlinux"
 
-- name: Change default shell to zsh
+- name: Install Zoxide (macOS)
+  community.general.homebrew:
+    name: zoxide
+    state: present
+  when: ansible_facts['os_family'] == "Darwin"
+
+- name: Change default shell to zsh (Arch Linux)
   become: true
   ansible.builtin.user:
     name: "{{ ansible_facts['user_id'] }}"
     shell: /usr/bin/zsh
+  when: ansible_facts['os_family'] == "Archlinux"
 
+# - name: Change default shell to zsh (macOS)
+#   become: false
+#   ansible.builtin.shell: "chsh -s /usr/local/bin/zsh {{ ansible_user }}"
+#   args:
+#     warn: false
+#   when: ansible_facts['os_family'] == "Darwin"
+# 

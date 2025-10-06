@@ -27,6 +27,7 @@
 
 - name: Symlink hyprland config
   ansible.builtin.import_tasks: hyprland.yml
+  when: ansible_facts['os_family'] != "Darwin"
   tags:
     - hyprland
     - dotfiles
@@ -39,6 +40,9 @@
 
 - name: Symlink ghostty config
   ansible.builtin.import_tasks: ghostty.yml
+  tags:
+    - ghostty
+    - dotfiles
   tags:
     - ghostty
     - dotfiles

@@ -1,4 +1,3 @@
-
 ---
 - name: Setup my eos system
   hosts: all
@@ -14,6 +13,7 @@
 
     - role: hyprland
       tags: [hyprland]
+      when: ansible_facts['os_family'] != "Darwin"
 
     - role: neovim
       tags: [nvim]
