@@ -1,9 +1,8 @@
 ---
-# Clone dotfiles repository over HTTPS (no SSH key needed for public repo)
 - name: Clone dotfiles repo
   ansible.builtin.git:
     repo: "https://github.com/flxgde/dotfiles.git"
-    dest: "{{ ansible_env.HOME }}/.dotfiles"
+    dest: "{{ ansible_env.HOME }}/dotfiles"
     version: main
     update: yes
   become: false
