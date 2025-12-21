@@ -3,11 +3,11 @@
   community.general.pacman:
     name:
       - hyprland
+      - hyprlock
       - waybar
       - wofi
       - xdg-utils
       - greetd
-      - greetd-tuigreet
       - polkit-gnome
     state: present
     update_cache: yes
@@ -18,6 +18,27 @@
     name: sddm
     enabled: no
     state: stopped
+  become: true
+
+- name: Ensure /etc/greetd/directory exists
+  ansible.builtin.file:
+    path: /etc/greetd
+    state: directory
+    mode: '0755'
+  become: true
+
+- name: Create or overwrite greetd config.toml
+  ansible.builtin.copy:
+    content: |
+      [terminal]
+      vt = 1
+      [default_session]
+      command = "Hyprland < /dev/null"
+      user = "{{ ansible_user }}"
+    dest: /etc/greetd/config.toml
+    owner: root
+    group: root
+    mode: '0644'
   become: true
 
 - name: Enable greetd service
