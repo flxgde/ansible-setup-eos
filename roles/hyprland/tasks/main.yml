@@ -6,7 +6,8 @@
       - waybar
       - wofi
       - xdg-utils
-      - ly
+      - greetd
+      - greetd-tuigreet
       - polkit-gnome
     state: present
     update_cache: yes
@@ -19,9 +20,9 @@
     state: stopped
   become: true
 
-- name: Enable ly service
+- name: Enable greetd service
   ansible.builtin.systemd:
-    name: ly
+    name: greetd
     enabled: yes
     state: started
   become: true

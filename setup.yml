@@ -26,3 +26,9 @@
 
     - role: tmux
       tags: [tmux]
+
+    - role: uninstall-zen
+      tags: [uninstall-zen]
+
+    - role: browser
+      tags: [browser]

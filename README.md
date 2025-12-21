@@ -7,7 +7,7 @@ This repository contains an **Ansible playbook** that automates my personal Ende
 - **Window Manager:** [Hyprland](https://hyprland.org)
 - **Terminal:** [Ghostty](https://ghostty.org)
 - **Editor:** [Neovim](https://neovim.io)
-- **Browser:** [Zen Browser](https://zen-browser.app)
+- **Browser:** [Brave](https://brave.com)
 - **Email Client:** [Thunderbird](https://www.thunderbird.net)
 - **Essential Tools:** (git, zsh, curl, etc.)
 - **Custom Configurations:** Dotfiles and configs for:

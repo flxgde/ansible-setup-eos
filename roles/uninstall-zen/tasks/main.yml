@@ -1,0 +1,6 @@
+---
+- name: Uninstall Zen browser
+  become: true
+  community.general.pacman:
+    name: zen-browser-bin
+    state: absent
