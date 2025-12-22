@@ -46,6 +46,11 @@
     - ghostty
     - dotfiles
 
+- name: Symlink executables
+  ansible.builtin.import_tasks: local-bin.yml
+  tags:
+    - dotfiles
+
 #- name: Symlink tmux config
 #  import_tasks: tmux.yml
 #  tags:
