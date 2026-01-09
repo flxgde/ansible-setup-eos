@@ -7,48 +7,48 @@
       - waybar
       - wofi
       - xdg-utils
-      - greetd
+      - ly
       - polkit-gnome
     state: present
     update_cache: yes
   become: true
 
-- name: Disable SDDM service if enabled
+- name: Stop and disable SDDM service if present
   ansible.builtin.systemd:
     name: sddm
     enabled: no
     state: stopped
   become: true
+  ignore_errors: yes
 
-- name: Ensure /etc/greetd/directory exists
-  ansible.builtin.file:
-    path: /etc/greetd
-    state: directory
-    mode: '0755'
+- name: Uninstall SDDM
+  community.general.pacman:
+    name: sddm
+    state: absent
   become: true
+  ignore_errors: yes
 
-- name: Create or overwrite greetd config.toml
-  ansible.builtin.copy:
-    content: |
-      [terminal]
-      vt = 1
-      [default_session]
-      command = "Hyprland < /dev/null"
-      user = "{{ ansible_user }}"
-    dest: /etc/greetd/config.toml
-    owner: root
-    group: root
-    mode: '0644'
-  become: true
-
-- name: Enable greetd service
+- name: Stop and disable greetd service if present
   ansible.builtin.systemd:
     name: greetd
+    enabled: no
+    state: stopped
+  become: true
+  ignore_errors: yes
+
+- name: Uninstall greetd
+  community.general.pacman:
+    name: greetd
+    state: absent
+  become: true
+  ignore_errors: yes
+
+- name: Enable ly service
+  ansible.builtin.systemd:
+    name: ly@tty2
     enabled: yes
-    state: started
   become: true
 
 - name: Set systemd default to graphical.target
   ansible.builtin.command: systemctl set-default graphical.target
   become: true
-
