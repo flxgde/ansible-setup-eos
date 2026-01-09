@@ -13,13 +13,20 @@
     update_cache: yes
   become: true
 
+- name: Check if SDDM service exists
+  ansible.builtin.command: systemctl list-unit-files sddm.service
+  register: sddm_check
+  changed_when: false
+  failed_when: false
+  become: true
+
 - name: Stop and disable SDDM service if present
   ansible.builtin.systemd:
     name: sddm
     enabled: no
     state: stopped
   become: true
-  ignore_errors: yes
+  when: sddm_check.rc == 0 and 'sddm.service' in sddm_check.stdout
 
 - name: Uninstall SDDM
   community.general.pacman:
@@ -28,13 +35,20 @@
   become: true
   ignore_errors: yes
 
+- name: Check if greetd service exists
+  ansible.builtin.command: systemctl list-unit-files greetd.service
+  register: greetd_check
+  changed_when: false
+  failed_when: false
+  become: true
+
 - name: Stop and disable greetd service if present
   ansible.builtin.systemd:
     name: greetd
     enabled: no
     state: stopped
   become: true
-  ignore_errors: yes
+  when: greetd_check.rc == 0 and 'greetd.service' in greetd_check.stdout
 
 - name: Uninstall greetd
   community.general.pacman:

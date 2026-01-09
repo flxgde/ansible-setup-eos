@@ -2,7 +2,7 @@
 - name: Clone dotfiles repo
   ansible.builtin.git:
     repo: "https://github.com/flxgde/dotfiles.git"
-    dest: "{{ ansible_env.HOME }}/dotfiles"
+    dest: "{{ ansible_facts['env']['HOME'] }}/dotfiles"
     version: main
     update: yes
   become: false
@@ -12,13 +12,10 @@
     - hyprland
     - nvim
     - ghostty
-    - tmux
-    - waybar
-    - wofi
 
 - name: Create .config directory
   ansible.builtin.file:
-    path: "{{ ansible_env.HOME }}/.config"
+    path: "{{ ansible_facts['env']['HOME'] }}/.config"
     state: directory
     mode: '0755'
 
@@ -50,22 +47,3 @@
   ansible.builtin.import_tasks: local-bin.yml
   tags:
     - dotfiles
-
-#- name: Symlink tmux config
-#  import_tasks: tmux.yml
-#  tags:
-#    - tmux
-#    - dotfiles
-#
-#- name: Symlink waybar config
-#  import_tasks: waybar.yml
-#  tags:
-#    - waybar
-#    - dotfiles
-#
-#- name: Symlink wofi config
-#  import_tasks: wofi.yml
-#  tags:
-#    - wofi
-#    - dotfiles
-#

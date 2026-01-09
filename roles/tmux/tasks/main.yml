@@ -7,14 +7,14 @@
 
 - name: Remove existing tmux config folder
   ansible.builtin.file:
-    path: "{{ ansible_env.HOME }}/.config/tmux"
+    path: "{{ ansible_facts['env']['HOME'] }}/.config/tmux"
     state: absent
   become: false
 
 - name: Symlink tmux
   become: false
   ansible.builtin.file:
-    src: "{{ ansible_env.HOME }}/dotfiles/.config/tmux"
-    dest: "{{ ansible_env.HOME }}/.config/tmux"
+    src: "{{ ansible_facts['env']['HOME'] }}/dotfiles/.config/tmux"
+    dest: "{{ ansible_facts['env']['HOME'] }}/.config/tmux"
     state: link
     force: yes

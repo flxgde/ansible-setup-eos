@@ -1,8 +1,7 @@
 ---
 - name: Install Brave browser
-  become: true
+  become: false
   community.general.pacman:
     name: brave-bin
     state: present
-    update_cache: yes
     executable: yay

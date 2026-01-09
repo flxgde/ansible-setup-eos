@@ -1,7 +1,0 @@
-
----
-aur_packages:
-  - hyprland
-  - waybar
-  - wofi
-  - xdg-utils

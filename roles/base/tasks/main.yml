@@ -19,5 +19,5 @@
       - fzf
       - bat
       - exa
-    state: installed
+    state: present
 

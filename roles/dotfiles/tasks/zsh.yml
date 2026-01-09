@@ -1,8 +1,8 @@
 ---
 - name: Symlink .zshrc
   ansible.builtin.file:
-    src: "{{ ansible_env.HOME }}/dotfiles/.zshrc"
-    dest: "{{ ansible_env.HOME }}/.zshrc"
+    src: "{{ ansible_facts['env']['HOME'] }}/dotfiles/.zshrc"
+    dest: "{{ ansible_facts['env']['HOME'] }}/.zshrc"
     state: link
     force: yes
 
