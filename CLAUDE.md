@@ -51,3 +51,9 @@ Available tags match role names: `base`, `zsh`, `ghostty`, `hyprland`, `neovim`,
 - `inventory/probook.yml` - Remote machine at 192.168.178.59
 
 **Privilege Escalation:** Roles use `become: true` for system-level changes (package installation, systemd) and `become: false` for user-level operations (dotfiles, shell config).
+
+## Conventions
+
+- Use `ansible_facts['env']['HOME']` and `ansible_facts['user_id']` instead of deprecated `ansible_env.HOME` and `ansible_user`
+- AUR packages (via yay) must use `become: false` - yay should not run as root
+- Check if systemd services exist before stopping/disabling them to avoid failures on clean systems
