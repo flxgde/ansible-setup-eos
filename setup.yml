@@ -18,6 +18,9 @@
     - role: neovim
       tags: [nvim]
 
+    - role: starship
+      tags: [starship]
+
     - role: dotfiles
       tags: [dotfiles]
 
