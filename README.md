@@ -72,5 +72,5 @@ Available tags: `base`, `zsh`, `ghostty`, `hyprland`, `neovim`, `browser`, `dotf
 | `browser` | Brave browser (AUR) |
 | `dotfiles` | Clones dotfiles repo and symlinks configs |
 | `docker` | Docker daemon, adds user to docker group |
-| `tmux` | tmux with config from dotfiles |
+| `tmux` | tmux with tpm (Tmux Plugin Manager), installs plugins, symlinks config from dotfiles |
 | `uninstall-zen` | Removes zen-browser-bin |

@@ -5,3 +5,4 @@
     name: brave-bin
     state: present
     executable: yay
+  when: ansible_system != 'Darwin'

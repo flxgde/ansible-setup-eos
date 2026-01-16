@@ -41,7 +41,7 @@ Available tags match role names: `base`, `zsh`, `ghostty`, `hyprland`, `neovim`,
 6. `browser` - Brave via AUR
 7. `dotfiles` - Clones github.com/flxgde/dotfiles, symlinks configs for zsh, hyprland, neovim, ghostty, waybar
 8. `docker` - Docker daemon, adds user to docker group
-9. `tmux` - Terminal multiplexer with config from dotfiles
+9. `tmux` - Terminal multiplexer: installs package, clones tpm (Tmux Plugin Manager), symlinks config from dotfiles, installs plugins
 10. `uninstall-zen` - Removes zen-browser-bin
 
 **Configuration Pattern:** Actual configs live in the external dotfiles repo (github.com/flxgde/dotfiles). This repo creates symlinks to those configs. Changes to configs should be made in the dotfiles repo, not here.

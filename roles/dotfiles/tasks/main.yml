@@ -44,9 +44,6 @@
   tags:
     - ghostty
     - dotfiles
-  tags:
-    - ghostty
-    - dotfiles
 
 - name: Symlink starship config
   ansible.builtin.import_tasks: starship.yml
