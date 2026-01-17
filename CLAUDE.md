@@ -28,6 +28,11 @@ ansible-playbook setup.yml -i inventory/self.yml -vvv
 
 Available tags match role names: `base`, `zsh`, `ghostty`, `hyprland`, `neovim`, `browser`, `dotfiles`, `docker`, `tmux`, `uninstall-zen`
 
+Special tag: `cleanup` - Removes obsolete files (uses `never` tag, must be explicitly invoked):
+```bash
+ansible-playbook setup.yml -i inventory/self.yml --tags cleanup
+```
+
 ## Architecture
 
 **Main Playbook (`setup.yml`):** Orchestrates all roles sequentially. Targets hosts defined in inventory files.

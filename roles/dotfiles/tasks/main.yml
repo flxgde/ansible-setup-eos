@@ -55,3 +55,9 @@
   ansible.builtin.import_tasks: local-bin.yml
   tags:
     - dotfiles
+
+- name: Cleanup obsolete files
+  ansible.builtin.import_tasks: cleanup.yml
+  tags:
+    - never
+    - cleanup
