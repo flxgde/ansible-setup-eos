@@ -18,3 +18,10 @@
     dest: "{{ ansible_facts['env']['HOME'] }}/.local/bin/tmux-switch-session"
     state: link
     force: yes
+
+- name: Symlink git smart checkout
+  ansible.builtin.file:
+    src: "{{ ansible_facts['env']['HOME'] }}/dotfiles/.local/bin/git-smart-checkout"
+    dest: "{{ ansible_facts['env']['HOME'] }}/.local/bin/git-smart-checkout"
+    state: link
+    force: yes
