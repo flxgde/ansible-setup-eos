@@ -1,9 +1,2 @@
 ---
-zsh_plugins:
-  - name: zsh-autosuggestions
-    repo: https://github.com/zsh-users/zsh-autosuggestions
-  - name: zsh-syntax-highlighting
-    repo: https://github.com/zsh-users/zsh-syntax-highlighting
-  - name: fast-syntax-highlighting
-    repo: https://github.com/zdharma-continuum/fast-syntax-highlighting
-
+# Zinit manages plugins via .zshrc - no vars needed

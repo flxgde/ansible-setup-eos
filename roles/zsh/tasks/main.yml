@@ -12,26 +12,6 @@
     state: present
   when: ansible_facts['os_family'] == "Darwin"
 
-- name: Check if Oh My Zsh is installed
-  ansible.builtin.stat:
-    path: "{{ ansible_facts['env']['HOME'] }}/.oh-my-zsh"
-  register: ohmyzsh_check
-
-- name: Install Oh My Zsh
-  become: false
-  ansible.builtin.shell: |
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)" "" --unattended
-  args:
-    creates: "{{ ansible_facts['env']['HOME'] }}/.oh-my-zsh"
-
-- name: Install Zsh plugins
-  become: false
-  ansible.builtin.git:
-    repo: "{{ item.repo }}"
-    dest: "{{ ansible_facts['env']['HOME'] }}/.oh-my-zsh/custom/plugins/{{ item.name }}"
-    update: yes
-  loop: "{{ zsh_plugins }}"
-
 - name: Install Zoxide (Arch Linux)
   become: true
   community.general.pacman:
@@ -52,10 +32,10 @@
     shell: /usr/bin/zsh
   when: ansible_facts['os_family'] == "Archlinux"
 
-# - name: Change default shell to zsh (macOS)
-#   become: false
-#   ansible.builtin.shell: "chsh -s /usr/local/bin/zsh {{ ansible_user }}"
-#   args:
-#     warn: false
-#   when: ansible_facts['os_family'] == "Darwin"
-# 
+# Cleanup: Remove old Oh My Zsh installation (run with --tags cleanup)
+- name: Remove old Oh My Zsh installation
+  become: false
+  ansible.builtin.file:
+    path: "{{ ansible_facts['env']['HOME'] }}/.oh-my-zsh"
+    state: absent
+  tags: [never, cleanup]
